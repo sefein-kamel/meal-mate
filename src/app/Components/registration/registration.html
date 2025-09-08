@@ -1,0 +1,126 @@
+<form class="w-50 my-5 mx-auto" [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit()">
+  <!-- Name -->
+  <div class="mb-3">
+    <label for="name" for="exampleInputEmail1" class="form-label">full name</label>
+    <input
+      type="text"
+      name="name"
+      formControlName="name"
+      class="form-control"
+      id="exampleInputName"
+      aria-describedby="nameHelp"
+    />
+    @if (name?.touched) {
+    <div id="nameHelp" class="form-text text-danger">
+      @if (name?.errors?.["required"]) {
+      <p>Name is required.</p>
+      } @if (name?.errors?.['minlength']) {
+      <p>Name must be at least 5 characters.</p>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- Email -->
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input
+      type="email"
+      name="email"
+      formControlName="email"
+      class="form-control"
+      id="email"
+      aria-describedby="emailHelp"
+    />
+    @if (email?.touched) {
+    <div class="form-text text-danger">
+      @if (email?.errors?.['required']) {
+      <p>Email is required.</p>
+      } @if (email?.errors?.['email']) {
+      <p>Invalid email format.</p>
+      } @if (email?.errors?.['pattern']) {
+      <p>Please enter a valid email (pattern check).</p>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- mobile -->
+  <div class="mb-3">
+    <label for="mobile" class="form-label">mobile number</label>
+    <input
+      type="text"
+      name="mobile"
+      formControlName="mobile"
+      class="form-control"
+      id="mobile"
+      aria-describedby="mobileHelp"
+    />
+    @if (mobile?.touched) {
+    <div class="form-text text-danger">
+      @if (mobile?.errors?.['required']) {
+      <p>Email is required.</p>
+      } @if (mobile?.errors?.['pattern']) {
+      <p>Must be a valid mobile number start (01) & (11 digits).</p>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- password -->
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      name="password"
+      formControlName="password"
+      class="form-control"
+      id="password"
+    />
+    @if (password?.touched) {
+    <div class="form-text text-danger">
+      @if (password?.errors?.['required']) {
+      <p>Password is required.</p>
+      } @if (password?.errors?.['minlength']) {
+      <p>Minimum length is 6 characters.</p>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- confirm password -->
+  <div class="mb-3">
+    <label for="confirmPassword" class="form-label">Confirm Password</label>
+    <input
+      type="password"
+      name="confirmPassword"
+      formControlName="confirmPassword"
+      class="form-control"
+      id="confirmPassword"
+    />
+    @if (confirmPassword?.touched) {
+    <div class="form-text text-danger">
+      @if (confirmPassword?.errors?.['required']) {
+      <p>Confirm Password is required.</p>
+      } @if (userRegistrationForm.errors?.['passwordMatchValidator']) {
+      <p>Passwords do not match.</p>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="container d-flex justify-content-between">
+    <button [disabled]="userRegistrationForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" (click)="resetForm()" class="btn btn-warning">Reset</button>
+  </div>
+</form>
+
+<!-- Display submitted data -->
+@if (submittedData) {
+<div class="card w-75 my-5 mx-auto">
+  <div class="card-body">
+    <h5 class="card-title">Submitted Data</h5>
+    <pre>{{ submittedData }}</pre>
+  </div>
+</div>
+}

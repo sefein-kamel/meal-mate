@@ -1,0 +1,42 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">Search Products</h2>
+
+  <!-- Search input -->
+  <div class="input-group mb-4">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Enter product keyword..."
+      [(ngModel)]="keyword"
+    />
+    <button class="btn btn-primary" (click)="searchProducts()">Search</button>
+  </div>
+
+  <!-- Loading state -->
+  @if (isLoading) {
+  <div class="text-center">
+    <p>Loading products...</p>
+  </div>
+  }
+
+  <!-- Results -->
+  <div
+    class="container m-5 d-flex justify-content-center align-items-center gap-5 border-0 detail w-75 mx-auto"
+  >
+    @for (product of products; track product.id) {
+    <div class="card d-inline-block text-center p-5 border-2">
+      <img class="w-25 mb-5" src="{{ product.images }}" alt="" />
+      <h3>{{ product.title }}</h3>
+      <p><b>price:</b> {{ product.price }} EGP</p>
+      <p><b>category:</b> {{ product.category }}</p>
+      <p>{{ product.description }}</p>
+      <p><b>rate:</b> {{ product.rating }}</p>
+      <p><b>in stock:</b> {{ product.stock }}</p>
+      <button class="btn btn-primary my-3 mx-5">Add to Cart</button>
+      <a routerLink="/products" routerLinkActive="active" class="btn btn-primary mx-5"
+        >All Products</a
+      >
+    </div>
+    }
+  </div>
+</div>
