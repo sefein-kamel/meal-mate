@@ -1,1 +1,31 @@
-<p>meals-list works!</p>
+<div class="container py-5 my-5">
+  <h2 class="text-center  pt-5 mt-5">Meals in {{ categoryName }}</h2>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-center mt-4">
+    <p>Loading meals...<i class="bi bi-fork-knife"></i></p>
+  </div>
+
+  <!-- Meals -->
+  <div class="row mt-4" *ngIf="!loading">
+    <div class="col-11 col-sm-6 col-md-4 col-xl-3 my-4 mx-auto" *ngFor="let meal of meals">
+      <div class="card h-100 p-1 shadow">
+        <img
+        [src]="meal.strMealThumb"
+        class="card-img-top"
+        alt="{{ meal.strMeal }}"
+        />
+        <i class="bi bi-star-fill" [ngClass]="isFavorite(meal.idMeal) ? 'fav-active' : 'fav-inactive'" (click)="toggleFavorite(meal)"></i>
+        <div class="card-body text-center">
+          <h6 class="card-title">{{ meal.strMeal }}</h6>
+          <a
+            [routerLink]="['/meal', meal.idMeal]"
+            class="card-btn btn btn-sm btn-primary mt-2"
+          >
+            Details
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

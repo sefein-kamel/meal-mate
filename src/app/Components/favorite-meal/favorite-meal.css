@@ -1,0 +1,80 @@
+:root{
+    --main-color: #b91202;
+}
+
+.container{
+    min-height: 100vh;
+}
+
+.card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 4px solid #b91202;
+  transition: all 1.5s ease;
+  z-index: -1;
+}
+
+.card::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.card::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.card:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.card:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+.home-btn{
+  padding: 10px 20px;
+}
+.card-body .card-btn, .home-btn{
+    background-color: #b91202;
+    border-color: #b91202;
+    border-radius: 10px;
+}
+
+.card-body .card-btn:hover, .home-btn:hover{
+  color: #b91202;
+    background-color: white;
+    border-color: #b91202;
+}
+
+.card-body .remove-btn{
+    background-color: #6c757d;
+    border-color: #6c757d;
+    border-radius: 10px;
+}
+
+.card-body .remove-btn:hover{
+    color: #000;
+    background-color: white;
+    border-color: #000;
+}

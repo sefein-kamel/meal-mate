@@ -1,3 +1,4 @@
+import { FavoriteMeal } from './Components/favorite-meal/favorite-meal';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -9,22 +10,23 @@ import { Navbar } from './Components/navbar/navbar';
 import { NotFound } from './Components/not-found/not-found';
 import { Registration } from './Components/registration/registration';
 import { Login } from './Components/login/login';
-import { authGuard } from './guards/auth-guard';
-import { preventGuard } from './guards/prevent-guard';
+import { authGuardeGuard } from './guards/auth-guard';
+import { preventGuardeGuard } from './guards/prevent-guard';
 import { Search } from './Components/search/search';
 import { MealDetails } from './Components/meal-details/meal-details';
 import { MealsList } from './Components/meals-list/meals-list';
 
 
 export const routes: Routes = [
-  { path: 'home', component: Home },
+  { path: 'home', component: Home, canActivate: [authGuardeGuard] },
   { path: 'about', component: About },
   { path: 'contact', component: Contact },
-  { path: 'registration', component: Registration, canActivate: [preventGuard] },
-  { path: 'login', component: Login, canActivate: [preventGuard] },
-  { path: 'products', component: MealsList, canActivate: [authGuard] },
-  { path: 'products/:id', component: MealDetails, canActivate: [authGuard] }, 
-  { path: 'search', component: Search, canActivate: [authGuard] }, 
+  { path: 'registration', component: Registration, canActivate: [preventGuardeGuard] },
+  { path: 'login', component: Login, canActivate: [preventGuardeGuard] },
+  { path: 'category/:name', component: MealsList, canActivate: [authGuardeGuard] },
+  { path: 'meal/:id', component: MealDetails, canActivate: [authGuardeGuard] }, 
+  { path: 'search', component: Search, canActivate: [authGuardeGuard] },
+  { path: 'favorite', component: FavoriteMeal, canActivate: [authGuardeGuard] },
 
   // default route
   { path: '', redirectTo: '/home', pathMatch: 'full' },

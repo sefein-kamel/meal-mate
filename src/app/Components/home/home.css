@@ -1,0 +1,153 @@
+:root{
+    --main-color: #b91202;
+}
+
+h1 span{
+  color: #b91202;
+  font-weight: bold;
+}
+
+/* start */
+.start{
+  position: relative;
+  height: 100vh;
+  background: url(../../../../public/start-bg-d.jpg);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.dark .start{
+  background: url(../../../../public/start-bg-d.jpg);
+}
+
+.start::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(00 00 00 / 40%);
+}
+
+.start .text{
+  position: absolute;
+  top: 30%;
+  margin-left: 8%;
+  margin-right: 15%;
+  color: white;
+}
+
+.start .meal-img{
+    animation: rotate 20s infinite;
+}
+
+@keyframes rotate {
+    0% {
+    transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 767.98px) {
+  .start .meal-img{
+    display: none;
+}
+}
+
+/* card */
+.card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.dark .card{
+  background-color: #2c2c2c;
+  color: white;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 4px solid #b91202;
+  transition: all 1.2s ease;
+  z-index: -1;
+}
+
+.card::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.card::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.card:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.card:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+.card-body .card-btn{
+    background-color: #b91202;
+    border-color: #b91202;
+    border-radius: 10px;
+}
+
+.card-body .card-btn:hover{
+  color: #b91202;
+    background-color: white;
+    border-color: #b91202;
+}
+
+
+/*
+@media (min-width: 992px) { 
+  .card img {
+    filter: grayscale(100%);
+    transition: filter 0.5s ease-in-out;
+  }
+
+  .card:hover img {
+    filter: grayscale(0%);
+  }
+}
+*/
+
+/* 
+.card-body{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    width: 98%;
+    padding: 20px;
+    transition: 0.3s;
+    bottom: -100%;
+}
+
+.card:hover .card-body{
+    bottom: 1px;
+} */

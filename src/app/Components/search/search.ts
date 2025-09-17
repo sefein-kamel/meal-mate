@@ -1,8 +1,10 @@
+import { MealsService } from './../../services/meals-service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ImealsList } from '../../models/imeals-list';
 
 @Component({
   selector: 'app-search',
@@ -11,26 +13,29 @@ import { RouterModule } from '@angular/router';
   styleUrl: './search.css'
 })
 export class Search {
-    keyword: string = '';
-  products: any[] = [];
-  isLoading: boolean = false;
+  searchTerm = '';
+  meals: ImealsList[] = [];
+  loading = false;
+  noResults = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private MealsService: MealsService) {}
 
-  searchProducts() {
-    if (!this.keyword.trim()) return;
+  onSearch() {
+    if (!this.searchTerm.trim()) return;
 
-    this.isLoading = true;
-    this.http.get<any>(`https://dummyjson.com/products/search?q=${this.keyword}`)
-      .subscribe({
-        next: (res) => {
-          this.products = res.products;
-          this.isLoading = false;
-        },
-        error: () => {
-          this.products = [];
-          this.isLoading = false;
-        }
-      });
+    this.loading = true;
+    this.noResults = false;
+
+    this.MealsService.searchMealsByName(this.searchTerm).subscribe({
+      next: (res) => {
+        this.meals = res.meals || [];
+        this.noResults = this.meals.length === 0;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error searching meals:', err);
+        this.loading = false;
+      }
+    });
   }
 }

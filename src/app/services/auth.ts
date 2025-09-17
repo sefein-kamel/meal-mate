@@ -10,6 +10,7 @@ export class Auth {
 
   constructor(private http: HttpClient) {}
 
+  // login
   login(username: string, password: string): Observable<any> {
     return this.http
       .post('https://dummyjson.com/auth/login', {
@@ -19,8 +20,23 @@ export class Auth {
       .pipe(
         tap((res: any) => {
           localStorage.setItem(this.tokenKey, res.accessToken);
+          this.saveUser(res);
         })
       );
+  }
+
+    // register
+  register(username: string, email: string, password: string): Observable<any> {
+    return this.http.post(`https://dummyjson.com/users/add`, {
+      username,
+      email,
+      password
+    })
+    .pipe(
+      tap((res: any) => {
+        this.saveUser(res);
+      })
+    );
   }
 
   isLoggedIn(): boolean {
@@ -30,6 +46,17 @@ export class Auth {
     return false;
   }
 
+  // saveUser
+  saveUser(user: any) {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  // getUser
+  getUser() {
+    return JSON.parse(localStorage.getItem('user') || '{}');
+  }
+
+  // logout
   logout(): void {
     localStorage.removeItem(this.tokenKey);
   }

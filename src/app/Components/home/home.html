@@ -1,1 +1,37 @@
-<p>home works!</p>
+<div class="start">
+  <div class="text">
+    <h1>Welcome to <span>MealMate</span></h1>
+    <p class="lead mb-5">
+      Discover delicious meals by category, learn how to cook them, and save your favorites for later!
+    </p>
+    <img class="meal-img" src="./meal.png" alt="meal">
+  </div>
+</div>
+<div class="container text-center py-5 my-5">
+  <h2>The Meal Categories</h2>
+  <!-- Loading -->
+  <div *ngIf="loading" class="mt-4">
+    <p>Loading categories...<i class="bi bi-fork-knife"></i></p>
+  </div>
+
+  <!-- Categories -->
+
+  <div class="row mt-4" *ngIf="!loading">
+    <div class="col-11 col-md-6 col-lg-4 my-4 mx-auto mb-3" *ngFor="let cat of categories">
+      <!-- <a [routerLink]="['/category', cat.strCategory]" class=""> -->
+        <div class="card h-100 shadow position-relative">
+          <div class="px-3 pb-5 pt-1">
+            <img [src]="cat.strCategoryThumb" class="card-img-top" alt="{{ cat.strCategory }}" />
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ cat.strCategory }}</h5>
+            <p class="card-text">{{ cat.strCategoryDescription | slice : 0 : 100 }}...</p>
+            <a [routerLink]="['/category', cat.strCategory]" class="card-btn btn btn-primary ">
+              View Meals
+            </a>
+          </div>
+        </div>
+      <!-- </a> -->
+    </div>
+  </div>
+</div>

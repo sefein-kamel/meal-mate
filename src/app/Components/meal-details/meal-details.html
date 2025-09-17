@@ -1,1 +1,42 @@
-<p>meal-details works!</p>
+<div class="container py-5 my-5" *ngIf="!loading && meal">
+  <h2 class="text-center pt-5 my-5">{{ meal.strMeal }}</h2>
+
+  <div class="row gap-5 flex-column-reverse flex-md-row">
+    <!-- details -->
+    <div class="col-md-7">
+      <h4>Ingredients</h4>
+      <ul>
+        <li *ngFor="let ing of getIngredients()">{{ ing }}</li>
+      </ul>
+
+      <h4 class="mt-5">Instructions</h4>
+      <p style="white-space: pre-line;">{{ meal.strInstructions }}</p>
+
+      <div class="mt-3" *ngIf="meal.strYoutube">
+        <h5 class="mt-5">Watch on YouTube</h5>
+        <a
+          [href]="meal.strYoutube"
+          target="_blank"
+          class="youtube-btn btn"
+        >
+          <i class="bi bi-youtube pe-2"></i> Watch Video
+        </a>
+      </div>
+    </div>
+
+        <!-- image -->
+    <div class="col-md-4 text-center">
+      <div class="position-relative d-inline-block">
+        <img [src]="meal.strMealThumb" class="img-fluid rounded shadow" />
+        <i class="bi bi-star-fill" [ngClass]="isFav ? 'fav-active' : 'fav-inactive'" (click)="toggleFavorite()"></i>
+      </div>
+      <p class="mt-5"><strong>Category:</strong> {{ meal.strCategory }}</p>
+      <p><strong>Area:</strong> {{ meal.strArea }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Loading -->
+<div class="text-center mt-5" *ngIf="loading">
+  <p>Loading meal details...<i class="bi bi-fork-knife"></i></p>
+</div>

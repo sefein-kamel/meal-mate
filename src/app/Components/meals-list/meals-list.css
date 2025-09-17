@@ -1,0 +1,86 @@
+:root{
+    --main-color: #b91202;
+}
+
+.card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 4px solid #b91202;
+  transition: all 1.5s ease;
+  z-index: -1;
+}
+
+.card::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.card::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.card:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.card:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+.card-body .card-btn{
+    background-color: #b91202;
+    border-color: #b91202;
+    border-radius: 10px;
+}
+
+.card-body .card-btn:hover{
+  color: #b91202;
+    background-color: white;
+    border-color: #b91202;
+}
+
+.card i{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-shadow: 0px 0px 10px #b91202;
+    -webkit-text-stroke: 1px black;
+}
+
+.card i:hover {
+  transform: scale(1.5);
+}
+
+.fav-inactive {
+  color: white;
+  text-shadow: 0px 0px 10px #b91202;
+}
+
+.fav-active {
+  color: #b91202;
+  text-shadow: 0px 0px 10px #efe557;
+}

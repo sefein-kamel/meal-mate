@@ -1,0 +1,71 @@
+.container{
+    min-height: 50vh;
+}
+
+input:focus{
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border-color: #b91202;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(185, 18, 2, .25);
+}
+
+/* card */
+.card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 4px solid #b91202;
+  transition: all 1.5s ease;
+  z-index: -1;
+}
+
+.card::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.card::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.card:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.card:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+.card-body .card-btn, .search-btn{
+    background-color: #b91202;
+    border-color: #b91202;
+    border-radius: 10px;
+}
+
+.card-body .card-btn:hover, .search-btn:hover{
+    color: #b91202;
+    background-color: white;
+    border-color: #b91202;
+    box-shadow: 0 0 0 .25rem rgba(185, 18, 2, .25);
+}

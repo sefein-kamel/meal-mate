@@ -1,32 +1,27 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary px-5">
+<nav class="navbar-glass fixed-top navbar navbar-expand-lg bg-body-tertiary px-5">
   <div class="container-fluid">
-    <a class="navbar-brand pe-3" routerLink="/home" routerLinkActive="active">Navbar</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
+    <a class="navbar-brand pe-3 fs-2" routerLink="/home" routerLinkActive="active">
+      <img class="logo" src="./logo.png" alt="" /> MealMate
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <span class="navbar-toggler-icon"></span> -->
+       <i class="bi bi-list"></i>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
-        <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
-        <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
-        <a class="nav-link" routerLink="/products" routerLinkActive="active">products</a>
-        <a class="nav-link" routerLink="/search" routerLinkActive="active">search</a>
-      </div>
-    </div>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
+      <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+      <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+      <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+      <a class="nav-link" routerLink="/favorite" routerLinkActive="active">Favorites</a>
+      <a class="nav-link" routerLink="/search" routerLinkActive="active">search</a>
+      <span class="line nav-link">|</span>
       @if (authService.isLoggedIn()) {
-      <button class=" nav-link btn" routerLink="/login" routerLinkActive="active" (click)="authService.logout()">Logout</button>
+        <a class="nav-link" routerLink="/login" routerLinkActive="active" (click)="authService.logout()">Logout</a>
       } @else {
-      <a class="nav-link btn" routerLink="/login" routerLinkActive="active">Login</a>
-      <a class="nav-link btn" routerLink="/registration" routerLinkActive="active">Registration</a>
+      <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+      <a class="nav-link" routerLink="/registration" routerLinkActive="active">Registration</a>
       }
     </div>
   </div>

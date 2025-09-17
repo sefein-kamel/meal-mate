@@ -1,1 +1,29 @@
-<p>favorite-meal works!</p>
+<div class="container my-3 py-3">
+  <h2 class="text-center mt-5 py-5">My Favorite Meals <i class="bi bi-fork-knife"></i></h2>
+
+  <div *ngIf="favorites.length === 0" class="text-center mt-3">
+    <p>No favorite meals yet.</p>
+    <a href="/" class="home-btn btn btn-sm btn-primary mt-2">
+      Go Home
+    </a>
+  </div>
+
+  <div class="row mt-3" *ngIf="favorites.length > 0">
+    <div class="col-11 col-sm-6 col-md-4 col-xl-3 my-4 mx-auto" *ngFor="let meal of favorites">
+      <div class="card h-100 p-1 shadow">
+        <img [src]="meal.strMealThumb" class="card-img-top" alt="{{ meal.strMeal }}" />
+        <div class="card-body text-center">
+          <h6 class="card-title">{{ meal.strMeal }}</h6>
+          <div class="button d-flex justify-content-center gap-3">
+            <a [routerLink]="['/meal', meal.idMeal]" class="card-btn btn btn-sm btn-primary mt-2">
+              Details
+            </a>
+            <button class="remove-btn btn btn-sm btn-danger mt-2" (click)="removeMeal(meal.idMeal)">
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
