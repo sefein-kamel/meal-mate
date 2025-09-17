@@ -20,9 +20,9 @@ import { MealsList } from './Components/meals-list/meals-list';
 export const routes: Routes = [
   { path: 'home', component: Home, canActivate: [authGuardeGuard] },
   { path: 'about', component: About },
-  { path: 'contact', component: Contact },
-  { path: 'registration', component: Registration, canActivate: [preventGuardeGuard] },
-  { path: 'login', component: Login, canActivate: [preventGuardeGuard] },
+  { path: 'contact', component: Contact, data: { hideFooter: true } },
+  { path: 'registration', component: Registration, canActivate: [preventGuardeGuard], data: { hideFooter: true } },
+  { path: 'login', component: Login, canActivate: [preventGuardeGuard], data: { hideFooter: true } },
   { path: 'category/:name', component: MealsList, canActivate: [authGuardeGuard] },
   { path: 'meal/:id', component: MealDetails, canActivate: [authGuardeGuard] }, 
   { path: 'search', component: Search, canActivate: [authGuardeGuard] },
@@ -32,7 +32,7 @@ export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
   // NotFound route
-  { path: '**', component: NotFound },
+  { path: '**', component: NotFound, data: { hideFooter: true } },
 ];
 
 @NgModule({

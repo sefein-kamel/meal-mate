@@ -1,8 +1,9 @@
 import { Component, HostListener, signal } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { Navbar } from "./Components/navbar/navbar";
 import { Footer } from "./Components/footer/footer";
 import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -35,11 +36,16 @@ export class App {
   }
 
   hideFooter = false;
-  
-  constructor(private router: Router) {
-    this.router.events.subscribe(() => {
-      const hiddenRoutes = ['/login', '/register', '/contact'];
-      this.hideFooter = hiddenRoutes.includes(this.router.url) || !this.router.config.some(r => '/' + r.path === this.router.url);
-    });
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        let child = this.activatedRoute.firstChild;
+        while (child?.firstChild) {
+          child = child.firstChild;
+        }
+        this.hideFooter = child?.snapshot.data?.['hideFooter'] || false;
+      });
   }
 }
