@@ -28,6 +28,7 @@
     <div class="col-md-3 mb-5" *ngFor="let meal of meals">
       <div class="card h-100 p-1 shadow">
         <img [src]="meal.strMealThumb" class="card-img-top" alt="{{ meal.strMeal }}" />
+        <i class="bi bi-star-fill" [ngClass]="isFavorite(meal.idMeal) ? 'fav-active' : 'fav-inactive'" (click)="toggleFavorite(meal)"></i>
         <div class="card-body text-center">
           <h6 class="card-title">{{ meal.strMeal }}</h6>
           <a

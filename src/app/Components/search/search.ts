@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ImealsList } from '../../models/imeals-list';
+import { FavStorageService } from '../../services/fav-storage-service';
 
 @Component({
   selector: 'app-search',
@@ -18,7 +19,10 @@ export class Search {
   loading = false;
   noResults = false;
 
-  constructor(private MealsService: MealsService) {}
+  constructor(
+    private MealsService: MealsService,
+    private favService: FavStorageService
+  ) {}
 
   onSearch() {
     if (!this.searchTerm.trim()) return;
@@ -38,4 +42,17 @@ export class Search {
       }
     });
   }
+
+  isFavorite(id: string): boolean {
+    return this.favService.isFavorite(id);
+  }
+
+  toggleFavorite(meal: ImealsList) {
+    if (this.isFavorite(meal.idMeal)) {
+      this.favService.removeFavorite(meal.idMeal);
+    } else {
+      this.favService.addFavorite(meal);
+    }
+  }
+
 }

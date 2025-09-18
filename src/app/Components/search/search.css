@@ -69,3 +69,28 @@ input:focus{
     border-color: #b91202;
     box-shadow: 0 0 0 .25rem rgba(185, 18, 2, .25);
 }
+
+.card i{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-shadow: 0px 0px 10px #b91202;
+    -webkit-text-stroke: 1px black;
+}
+
+.card i:hover {
+  transform: scale(1.5);
+}
+
+.fav-inactive {
+  color: white;
+  text-shadow: 0px 0px 10px #b91202;
+}
+
+.fav-active {
+  color: #b91202;
+  text-shadow: 0px 0px 10px #efe557;
+}
