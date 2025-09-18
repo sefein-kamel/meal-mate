@@ -5,7 +5,7 @@
 img {
   border-radius: 25px !important;
   border: 5px solid #b91202;
-    animation: borderColor 2s linear infinite;
+  animation: borderColor 2s linear infinite;
 }
 
 ul {
