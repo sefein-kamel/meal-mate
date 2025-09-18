@@ -14,7 +14,7 @@
         <img [src]="meal.strMealThumb" class="card-img-top" alt="{{ meal.strMeal }}" />
         <div class="card-body text-center">
           <h6 class="card-title">{{ meal.strMeal }}</h6>
-          <div class="button d-flex justify-content-center gap-3">
+          <div class="button d-flex justify-content-between gap-3 px-5">
             <a [routerLink]="['/meal', meal.idMeal]" class="card-btn btn btn-sm btn-primary mt-2">
               Details
             </a>

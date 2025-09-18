@@ -2,6 +2,10 @@
     --main-color: #b91202;
 }
 
+.category-name{
+  text-shadow: 0px 0px 20px #b91202;
+}
+
 .card {
   position: relative;
   border-radius: 10px;
@@ -55,9 +59,10 @@
 }
 
 .card-body .card-btn:hover{
-  color: #b91202;
+    color: #b91202;
     background-color: white;
     border-color: #b91202;
+    box-shadow: 0 0 0 .25rem rgba(185, 18, 2, .25);
 }
 
 .card i{

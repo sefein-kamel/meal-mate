@@ -1,3 +1,4 @@
+import { Icategory } from './../../models/icategory';
 import { MealsService } from './../../services/meals-service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -14,6 +15,7 @@ import { FavStorageService } from '../../services/fav-storage-service';
 export class MealsList implements OnInit {
   meals: ImealsList[] = [];
   categoryName = '';
+  categoryDescription = '';
   loading = true;
 
   constructor(
@@ -25,8 +27,10 @@ export class MealsList implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.categoryName = params.get('name') || '';
+
       if (this.categoryName) {
         this.loadMeals(this.categoryName);
+        this.loadCategoryDescription(this.categoryName);
       }
     });
   }
@@ -45,6 +49,17 @@ export class MealsList implements OnInit {
     });
   }
 
+    loadCategoryDescription(category: string) {
+    this.mealsService.getCategories().subscribe({
+      next: (res) => {
+        const cat = res.categories.find(
+          (c: Icategory) => c.strCategory === category
+        );
+        this.categoryDescription = cat ? cat.strCategoryDescription : '';
+      },
+      error: (err) => console.error('Error loading category description:', err)
+    });
+  }
 
     isFavorite(id: string): boolean {
     return this.favService.isFavorite(id);
@@ -57,4 +72,5 @@ export class MealsList implements OnInit {
       this.favService.addFavorite(meal);
     }
   }
+
 }
