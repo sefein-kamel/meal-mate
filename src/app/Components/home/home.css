@@ -11,6 +11,7 @@ h1 span{
 .start{
   position: relative;
   height: 100vh;
+  min-height: 800px;
   background: url(../../../../public/start-bg-d.jpg);
   background-size: cover;
   background-position: center;
